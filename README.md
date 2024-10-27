@@ -14,7 +14,7 @@ A note about Controlled-Access CDN.
 - 根据上一步的查询结果，CDN可以作出三种不同的反应：
   - 如果查询结果是remote，则CDN扮演反向代理将本次请求转发给Data Center处理。
   - 如果查询结果是local，则CDN根据Path到Datastore (存储资源的Database) 中取出对应的资源响应请求。
-  - 如果上一步的查询结果是null，则CDN可以拒绝请求。
+  - 如果上一步的查询结果是null，则CDN可以拒绝服务本次请求。
 
 这个Database由Data Center负责为CDN生成，CDN通过Database Replication机制在本地维持一个Database的只读副本，这个Database中包含如下数据类型：
 - session_id -> user_groups
