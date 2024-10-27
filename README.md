@@ -16,12 +16,12 @@ A note about Controlled-Access CDN.
   - 如果查询结果是remote，则CDN扮演反向代理将本次请求转发给Data Center处理。
   - 如果上一步的查询结果是null，则CDN可以拒绝请求。
 
-这个Database由Data Center负责为CDN生成，CDN通过Database Replication机制在本地维持一个Database的只读副本，这个只读副本中包含如下数据类型：
+这个Database由Data Center负责为CDN生成，CDN通过Database Replication机制在本地维持一个Database的只读副本，这个Database中包含如下数据类型：
 - session_id -> user_groups
 - Path -> resource_groups
 - user_groups+Method+resource_groups -> local|remote|null
 
-这个Datastore也由Data Center负责为CDN生成，CDN通过Datastore Replication机制在本地维持一个Datastore的只读副本，这个只读副本中包含如下数据类型：
+这个Datastore也由Data Center负责为CDN生成，CDN通过Datastore Replication机制在本地维持一个Datastore的只读副本，这个Datastore中包含如下数据类型：
 - Path -> resource_representation
 
 ### Credits
