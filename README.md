@@ -13,7 +13,7 @@ A note about Controlled-Access CDN.
   - 从Database中查询user_group+can_action+resource_group -> true|null 的映射。
 - 如果上一步的查询结果是true，CDN从Database中查询resource_id -> resource_representation的映射，否则可以拒绝响应。
 
-CDN通过Database Replication在本地维持一个Database的只读副本。这个只读副本中包含如下数据类型：
+这个Database由Data Center负责为CDN生成，CDN通过Database Replication机制在本地维持一个Database的只读副本，这个只读副本中包含如下数据类型：
 - session_id -> user_group
 - resource_id -> resource_group
 - user_group+can_action+resource_group -> true|null
