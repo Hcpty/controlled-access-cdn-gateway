@@ -19,7 +19,7 @@ A note about Controlled-Access CDN.
 这个Database由Data Center负责为CDN生成，CDN通过Database Replication机制在本地维持一个Database的只读副本，这个只读副本中包含如下数据类型：
 - session_id -> user_group
 - resource_id -> resource_group
-- user_group+can_action+resource_group -> true|null
+- user_group+can_action+resource_group -> locally|remotely|null
 
 这个Datastore也由Data Center负责为CDN生成，CDN通过Datastore Replication机制在本地维持一个Datastore的只读副本，这个只读副本中包含如下数据类型：
 - resource_id -> resource_representation
