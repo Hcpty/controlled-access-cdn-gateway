@@ -26,3 +26,4 @@ A note about Controlled-Access CDN.
 
 ### Credits
 - Computer Networking: A Top-Down Approach, Eighth Edition
+- [Oracle In-Memory Database](https://www.oracle.com/database/)
