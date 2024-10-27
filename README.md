@@ -5,8 +5,8 @@ A note about Controlled-Access CDN.
 
 请求和响应的过程：
 - CDN从HTTP Request中读取Cookie，然后Cookie中读取session_id。
-- CDN从HTTP Request中读取Method。
-- CDN从HTTP Request中读取Path。
+- CDN从HTTP Request中读取 (Request) Method。
+- CDN从HTTP Request中读取 (URL) Path。
 - CDN从Database中查询session_id+Method+Path -> local|remote|null的映射，这一步可以细分为三步：
   - CDN从Database中查询session_id -> user_groups的映射。
   - CDN从Database中查询Path -> resource_groups的映射。
