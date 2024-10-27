@@ -21,7 +21,7 @@ A note about Controlled-Access CDN.
 - Path -> resource_groups
 - user_groups+Method+resource_groups -> local|remote|null
 
-这个Datastore也由Data Center负责为CDN生成，CDN通过Datastore Replication机制在本地维持一个Datastore的只读副本，这个Datastore中包含如下数据类型：
+这个Datastore也由Data Center负责为CDN生成，CDN通过Database Replication机制在本地维持一个Datastore的只读副本，这个Datastore中包含如下数据类型：
 - Path -> resource_representation
 
 ### Credits
