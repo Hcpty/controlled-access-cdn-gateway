@@ -11,7 +11,7 @@ A note about Controlled-Access CDN.
   - 从Database中查询session_id -> user_group的映射。
   - 从Database中查询resource_id -> resource_group的映射。
   - 从Database中查询user_group+can_action+resource_group -> locally|remotely|null 的映射。
-- 根据上一步的查询结果，CDN可以作出不同的反应：
+- 根据上一步的查询结果，CDN可以作出三种不同的反应：
   - 如果查询结果是locally，则CDN使用resource_id到Datastore (存储资源的Database) 中取出对应的资源响应请求。
   - 如果查询结果是remotely，则CDN使用反向代理将本次请求转发给Data Center处理。
   - 如果上一步的查询结果是null，则可以拒绝请求。
