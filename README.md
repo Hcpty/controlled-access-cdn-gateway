@@ -36,5 +36,7 @@ Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 
 CDN在Cache Database中刷新一个缓存时应该使用一个Mutex Lock。
 
+Last-Modified使用GMT。
+
 ### Credits
 - Computer Networking: A Top-Down Approach, Eighth Edition
