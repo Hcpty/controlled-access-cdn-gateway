@@ -29,9 +29,8 @@ CDN处理任务的过程：
 
 Permission Condition Database由Data Center建立和运行，Permission Condition Database中存储的数据结构：
 - session_id -> user_groups
-- Path -> resource_groups
+- Path -> resource_groups, last_modified
 - user_groups, Method, resource_groups -> choice
-- Path -> last_modified
 
 注意CDN对Permission Condition Database的请求可能非常频繁，所以最好在靠近CDN的位置上放置一些Permission Condition Database的只读副本，而且保证从副本到原本有一个较低的网络延迟。
 
