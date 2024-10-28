@@ -3,8 +3,8 @@ A note about Controlled-Access CDN.
 
 ### 带访问控制的内容分发网络
 
-CDN的用途主要包括：
-- 对HTTP Request进行访问控制、缓存响应和反向代理。
+CDN的主要用途包括：
+- 对HTTP Request进行访问控制、反向代理和缓存服务。
 - 对HTTP Response进行缓存。
 
 请求和响应的过程：
@@ -30,17 +30,19 @@ Permission Database由Data Center建立和运行，Permission Database中存储�
 
 CDN对Permission Database的请求可能非常频繁，所以最好在靠近CDN的某个位置维持一些Permission Database的只读副本。
 
+当权限查询结果是remote时，请求被转发到Data Center，Data Center应该再次对请求进行权限查询，因为write是更加敏感的操作。
+
 Resource Database由Data Center建立和运行，Resource Database中存储的数据结构：
-- Path -> last_modified
+- Path -> metadata (包括last_modified等)
 
 CDN对Resource Database的请求可能非常频繁，所以最好在靠近CDN的某个位置维持一些Resource Database的只读副本。
 
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
-- Path -> last_modified, content_type, content_length, resource_representation
+- Path -> metadata (包括last_modified等), resource_representation
 
 CDN在Cache Database中刷新一个缓存时应该使用一个Mutex Lock。
 
-Last-Modified使用GMT。
+注意last_modified使用GMT。
 
 ### Credits
 - Computer Networking: A Top-Down Approach, Eighth Edition
