@@ -35,12 +35,12 @@ Permission Condition Database由Data Center建立和运行，Permission Conditio
 
 注意CDN对Permission Condition Database的请求可能非常频繁，所以最好在靠近CDN的位置上放置一些Permission Condition Database的只读副本，而且保证从副本到原本的网络是一个低延迟的网络。
 
+注意last_modified使用GMT。
+
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - Path -> last_modified, resource_metadata, resource_representation
 
 注意CDN在Cache Database中刷新缓存时应该使用Mutex Lock，以减少因多个事件并发地向Data Center请求同一个资源而导致的开销。
-
-注意last_modified使用GMT。
 
 ### Credits
 - Computer Systems: A Programmer's Perspective, Third Edition
