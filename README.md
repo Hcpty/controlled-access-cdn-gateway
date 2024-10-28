@@ -42,7 +42,7 @@ Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 
 注意CDN在Cache Database中刷新缓存时应该使用Network Mutex Lock，以减少因多个节点多个事件并发地向Data Center请求同一个资源而带来的开销。
 
-注意要保证从CDN到Data Center有较好的网络带宽和较低的网络延迟。
+注意要保证从CDN到Data Center有较大的网络带宽和较低的网络延迟。
 
 对于CDN的缓存功能，在某些情况下，可以使用If-None-Match/ETag解决方案替代If-Modified-Since/Last-Modified解决方案。
 
