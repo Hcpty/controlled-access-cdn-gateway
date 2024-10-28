@@ -33,7 +33,7 @@ Permission Condition Database由Data Center建立和运行，Permission Conditio
 - user_groups, Method, resource_groups -> choice
 - Path -> last_modified
 
-注意CDN对Permission Condition Database的请求可能非常频繁，所以最好在靠近CDN的位置上放置一些Permission Condition Database的只读副本。
+注意CDN对Permission Condition Database的请求可能非常频繁，所以最好在靠近CDN的位置上放置一些Permission Condition Database的只读副本，而且保证从副本到原始的网络是一个低延迟的网络。
 
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - Path -> last_modified, resource_metadata, resource_representation
