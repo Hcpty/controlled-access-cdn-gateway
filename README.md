@@ -3,6 +3,10 @@ A note about Controlled-Access CDN.
 
 ### 带访问控制的内容分发网络
 
+CDN的用途主要包括：
+- 针对资源进行缓存。资源是程序处理的对象。
+- 针对程序进行TCP分岔。程序是处理资源的对象。
+
 请求和响应的过程：
 - CDN读取请求，这一步可以细分为三步：
   - CDN从HTTP Request中读取Cookie，然后从Cookie中读取session_id。
