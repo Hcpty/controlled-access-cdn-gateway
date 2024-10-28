@@ -12,37 +12,38 @@ CDN处理任务的过程：
   - CDN从HTTP Request中读取Cookie，然后从Cookie中读取session_id。
   - CDN从HTTP Request中读取 (Request) Method。
   - CDN从HTTP Request中读取 (URL) Path (with query)。
-- CDN从Permission Database中查询session_id, Method, Path -> remote|local|null的映射，这一步可以细分为三步：
-  - CDN从Permission Database中查询session_id -> user_groups的映射。
-  - CDN从Permission Database中查询Path -> resource_groups的映射。
-  - CDN从Permission Database中查询user_groups, Method, resource_groups -> remote|local|null 的映射。
-- 如果权限查询的结果是remote或local，则说明有权限，否则说明没有权限，CDN可以作出三种不同的反应：
-  - 如果查询结果是remote，则CDN扮演反向代理将请求转发给Data Center，并直接用Data Center的响应响应请求。
-  - 如果查询结果是local，则CDN根据Path分别到Resource Database和Cache Database中查询last_modified，并比较两个last_modified的值：
-    - 如果Resource Database中的last_modified晚于Cache Database中的last_modified，那么说明Cache Database中的缓存已经过期，则CDN先刷新缓存，再响应请求。
-    - 如果Resource Database中的last_modified等于Cache Database中的last_modified，那么说明Cache Database中的缓存尚未过期，则CDN直接响应请求。
-  - 如果上一步的查询结果是null，则CDN可以拒绝服务。
+- CDN从Permission Condition Database中查询session_id, Method, Path -> choice的映射，这一步可以细分为三步：
+  - CDN从Permission Condition Database中查询session_id -> user_groups的映射。
+  - CDN从Permission Condition Database中查询Path -> resource_groups的映射。
+  - CDN从Permission Condition Database中查询user_groups, Method, resource_groups -> choice的映射。
+- 如果choice的值是remote或local，则说明有权限，否则说明不能提供服务，CDN可以作出三种不同的反应：
+  - 如果choice的值是remote，则CDN扮演反向代理将请求转发给Data Center，并直接用Data Center的响应响应请求。
+  - 如果choice的值是local，则CDN根据Path分别到Permission Condition Database和Cache Database中查询last_modified，并比较两个last_modified的值：
+    - 如果Permission Condition Database中的last_modified晚于Cache Database中的last_modified，那么说明Cache Database中的缓存已经过期，则CDN先刷新缓存，再响应请求。
+    - 如果Permission Condition Database中的last_modified等于Cache Database中的last_modified，那么说明Cache Database中的缓存尚未过期，则CDN直接使用缓存响应请求。
+  - 如果choice的值是null，则CDN可以提示无法提供服务。
 
-Permission Database由Data Center建立和运行，Permission Database中存储的数据结构：
+Permission Condition Database由Data Center建立和运行，Permission Condition Database中存储的数据结构：
 - session_id -> user_groups
 - Path -> resource_groups
-- user_groups, Method, resource_groups -> remote|local|null
+- user_groups, Method, resource_groups -> choice
+- Path -> last_modified
 
-CDN对Permission Database的请求可能非常频繁，所以最好在靠近CDN的某个位置维持一些Permission Database的只读副本。
+CDN对Permission Condition Database的请求可能非常频繁，所以最好在靠近CDN的位置上维持一些Permission Condition Database的只读副本。
 
-当权限查询结果是remote时，请求被转发到Data Center，Data Center应该再次对请求进行权限查询，因为write是更加敏感的操作。
-
-Resource Database由Data Center建立和运行，Resource Database中存储的数据结构：
-- Path -> metadata (包括last_modified等)
-
-CDN对Resource Database的请求可能非常频繁，所以最好在靠近CDN的某个位置维持一些Resource Database的只读副本。
+当权限查询结果是remote时，请求被转发到Data Center，Data Center应该再次对请求进行权限查询。
 
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
-- Path -> metadata (包括last_modified等), resource_representation
+- Path -> last_modified, resource_metadata, resource_representation
 
 CDN在Cache Database中刷新一个缓存时应该使用一个Mutex Lock。
 
 注意last_modified使用GMT。
 
 ### Credits
+- Computer Systems: A Programmer's Perspective, Third Edition
 - Computer Networking: A Top-Down Approach, Eighth Edition
+- [Understanding /etc/passwd File Format - nixCraft](https://www.cyberciti.biz/faq/understanding-etcpasswd-file-format)
+- [Representational State Transfer (REST) Architectural Style - Fielding Dissertation](https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
+- [HTTP headers - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
+- [If-Modified-Since/Last-Modified - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since)
