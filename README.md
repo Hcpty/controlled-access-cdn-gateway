@@ -4,7 +4,7 @@ A note about Controlled-Access CDN.
 ### 带访问控制的内容分发网络
 
 CDN的用途主要包括：
-- 对HTTP Request进行访问控制、缓存响应和TCP分岔。
+- 对HTTP Request进行访问控制、缓存响应和反向代理。
 - 对HTTP Response进行缓存。
 
 请求和响应的过程：
