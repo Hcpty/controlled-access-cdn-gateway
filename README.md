@@ -53,3 +53,4 @@ Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - [Representational State Transfer (REST) Architectural Style - Fielding Dissertation](https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
 - [HTTP headers - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
 - [If-Modified-Since/Last-Modified - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since)
+- [If-None-Match/ETag - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match)
