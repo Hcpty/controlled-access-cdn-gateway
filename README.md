@@ -25,7 +25,7 @@ CDN处理任务的过程：
 
 未进行登录的用户可以属于nobody用户组。
 
-注意CDN应该在内部对 query fields 先进行排序再进行存储和匹配，以防止重复缓存。
+注意CDN应该在内部对 query fields 先进行排序再进行存储和匹配，以避免缓存穿透和重复缓存。
 
 Permission Condition Database由Data Center建立和运行，Permission Condition Database中存储的数据结构：
 - session_id -> user_groups
@@ -40,7 +40,7 @@ Permission Condition Database由Data Center建立和运行，Permission Conditio
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - Path -> last_modified, resource_metadata, resource_representation
 
-注意CDN在Cache Database中刷新缓存时应该使用Remote Mutex Lock，以减少因多个节点上的多个事件并发地向Data Center请求同一个资源而带来的开销。
+注意CDN在Cache Database中刷新缓存时应该使用Remote Mutex Lock，以减少因多个节点上的多个事件并发地向Data Center请求同一个资源而带来的开销，避免击穿现象。
 
 注意要保证从CDN到Data Center有较大的网络带宽和较低的网络延迟。
 
