@@ -4,7 +4,7 @@ A note about Controlled-Access CDN.
 ### 带访问控制的内容分发网络
 
 请求和响应的过程：
-- 读取请求，这一步可以细分为三步：
+- CDN读取请求，这一步可以细分为三步：
   - CDN从HTTP Request中读取Cookie，然后从Cookie中读取session_id。
   - CDN从HTTP Request中读取 (Request) Method。
   - CDN从HTTP Request中读取 (URL) Path (with query)。
