@@ -16,7 +16,7 @@ CDN处理任务的过程：
   - CDN从Permission Condition Database中查询session_id -> user_groups的映射。
   - CDN从Permission Condition Database中查询Path -> resource_groups的映射。
   - CDN从Permission Condition Database中查询user_groups, Method, resource_groups -> choice的映射。
-- 如果choice的值是remote或local，则说明有权限，否则说明不能提供服务，CDN可以作出三种不同的反应：
+- 如果choice的值是remote或local，则说明可以提供服务，否则说明不能提供服务，CDN可以作出三种不同的反应：
   - 如果choice的值是remote，则CDN扮演反向代理将请求转发给Data Center，并直接用Data Center的响应响应请求。
   - 如果choice的值是local，则CDN根据Path分别到Permission Condition Database和Cache Database中查询last_modified，并比较两个last_modified的值：
     - 如果Permission Condition Database中的last_modified晚于Cache Database中的last_modified，那么说明Cache Database中的缓存已经过期，则CDN先刷新缓存，再响应请求。
@@ -30,8 +30,6 @@ Permission Condition Database由Data Center建立和运行，Permission Conditio
 - Path -> last_modified
 
 CDN对Permission Condition Database的请求可能非常频繁，所以最好在靠近CDN的位置上维持一些Permission Condition Database的只读副本。
-
-当权限查询结果是remote时，请求被转发到Data Center，Data Center应该再次对请求进行权限查询。
 
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - Path -> last_modified, resource_metadata, resource_representation
