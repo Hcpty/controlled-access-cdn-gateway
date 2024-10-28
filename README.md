@@ -18,9 +18,9 @@ CDN处理任务的过程：
   - CDN从Permission Condition Database中查询user_groups, Method, resource_groups -> choice的映射。
 - 如果choice的值是remote或local，则说明可以提供服务，否则说明不可以提供服务，CDN可以作出三种不同的反应：
   - 如果choice的值是remote，则CDN扮演反向代理将请求转发给Data Center，并直接用Data Center的响应响应请求。
-  - 如果choice的值是local，则CDN根据Path分别到Permission Condition Database和Cache Database中查询last_modified，并比较两个last_modified的值：
-    - 如果Permission Condition Database中的last_modified晚于Cache Database中的last_modified，那么说明Cache Database中的缓存已经过期，则CDN先刷新缓存，再响应请求。
-    - 如果Permission Condition Database中的last_modified等于Cache Database中的last_modified，那么说明Cache Database中的缓存尚未过期，则CDN直接使用缓存响应请求。
+  - 如果choice的值是local，则CDN根据Path分别到Permission Condition Database和Cache Database中查询mark，并比较两个mark的值：
+    - 如果Permission Condition Database中的mark和Cache Database中的mark不同，那么说明Cache Database中的缓存已经过期，则CDN先刷新缓存，再响应请求。
+    - 如果Permission Condition Database中的mark和Cache Database中的mark相同，那么说明Cache Database中的缓存尚未过期，则CDN直接使用缓存响应请求。
   - 如果choice的值是null，则CDN可以提示无法提供服务。
 
 未进行登录的用户可以属于nobody用户组。
@@ -29,21 +29,17 @@ CDN处理任务的过程：
 
 Permission Condition Database由Data Center建立和运行，Permission Condition Database中存储的数据结构：
 - session_id -> user_groups
-- Path -> resource_groups, last_modified
+- Path -> resource_groups, mark
 - user_groups, Method, resource_groups -> choice
 
 注意CDN对Permission Condition Database的请求可能非常频繁，所以最好在靠近CDN的位置上放置一些Permission Condition Database的只读副本，而且保证从副本到原本有一个较低的网络延迟。
 
-注意last_modified使用GMT。
-
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
-- Path -> last_modified, resource_metadata, resource_representation
+- Path -> mark, resource_metadata, resource_representation
 
 注意CDN在Cache Database中刷新缓存时应该使用Remote Mutex Lock，以减少因多个节点上的多个事件并发地向Data Center请求同一个资源而带来的开销，即避免缓存击穿。
 
 注意要保证从CDN到Data Center有较大的网络带宽和较低的网络延迟。
-
-对于CDN的缓存功能，在某些情况下，可以使用If-None-Match/ETag解决方案替代If-Modified-Since/Last-Modified解决方案。
 
 ### Credits
 - Computer Systems: A Programmer's Perspective, Third Edition
