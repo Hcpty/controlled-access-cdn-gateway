@@ -37,7 +37,7 @@ Permission Condition Database由Data Center建立和运行，Permission Conditio
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - Path -> resource_mark, resource_metadata, resource_representation
 
-注意CDN在Cache Database中刷新缓存时应该使用Remote Mutex Lock，以减少因多个节点上的多个事件并发地向Data Center请求同一个资源而带来的开销，即避免缓存击穿。
+CDN还需要建立和运行一个Lock Database，因为CDN在Cache Database中刷新缓存时需要使用Remote Mutex Lock，以减少因多个节点上的多个事件并发地向Data Center请求同一个资源而带来的开销，即避免缓存击穿。
 
 注意要保证从CDN到Data Center有较大的网络带宽和较低的网络延迟。
 
