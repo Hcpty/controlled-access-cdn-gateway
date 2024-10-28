@@ -40,7 +40,7 @@ Permission Condition Database由Data Center建立和运行，Permission Conditio
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - Path -> last_modified, resource_metadata, resource_representation
 
-注意CDN在Cache Database中刷新缓存时应该使用Network Mutex Lock，以减少因多个节点多个事件并发地向Data Center请求同一个资源而带来的开销。
+注意CDN在Cache Database中刷新缓存时应该使用Remote Mutex Lock，以减少因多个节点多个事件并发地向Data Center请求同一个资源而带来的开销。
 
 注意要保证从CDN到Data Center有较大的网络带宽和较低的网络延迟。
 
@@ -52,5 +52,6 @@ Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - [Understanding /etc/passwd File Format - nixCraft](https://www.cyberciti.biz/faq/understanding-etcpasswd-file-format)
 - [Representational State Transfer (REST) Architectural Style - Fielding Dissertation](https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
 - [HTTP headers - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
+- [Remote Mutex Lock and Remote Readers-Writer Lock - Hcpty](https://github.com/hcpty/remote-mutex-lock-and-remote-readers-writer-lock)
 - [If-Modified-Since/Last-Modified - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since)
 - [If-None-Match/ETag - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match)
