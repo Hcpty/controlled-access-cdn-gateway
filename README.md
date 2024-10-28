@@ -15,7 +15,7 @@ A note about Controlled-Access CDN.
 - 如果权限查询的结果是remote或local，则说明有权限，否则说明没有权限，CDN可以作出三种不同的反应：
   - 如果查询结果是remote，则CDN扮演反向代理将请求转发给Data Center，并直接用Data Center的响应响应请求。
   - 如果查询结果是local，则CDN根据Path分别到Resource Database和Cache Database中查询last_modified，并比较两个last_modified的值：
-    - 如果Resource Database中的last_modified晚于Cache Database中的last_modified，那么说明Cache Database中的缓存已经过期，则CDN先刷新缓存，然后响应请求。
+    - 如果Resource Database中的last_modified晚于Cache Database中的last_modified，那么说明Cache Database中的缓存已经过期，则CDN先刷新缓存，再响应请求。
     - 如果Resource Database中的last_modified等于Cache Database中的last_modified，那么说明Cache Database中的缓存尚未过期，则CDN直接响应请求。
   - 如果上一步的查询结果是null，则CDN可以拒绝服务。
 
