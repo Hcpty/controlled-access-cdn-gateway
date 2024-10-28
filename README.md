@@ -24,12 +24,12 @@ Permission Database由Data Center建立和运行，Permission Database中存储�
 - Path -> resource_groups
 - user_groups, Method, resource_groups -> remote|local|null
 
-CDN对Permission Database的请求可能非常频繁，所以最好在靠近CDN的某个位置维持一个Permission Database的只读副本。
+CDN对Permission Database的请求可能非常频繁，所以最好在靠近CDN的某个位置维持一些Permission Database的只读副本。
 
 Resource Database由Data Center建立和运行，Resource Database中存储的数据结构：
 - Path -> last_modified
 
-CDN对Resource Database的请求可能非常频繁，所以最好在靠近CDN的某个位置维持一个Resource Database的只读副本。
+CDN对Resource Database的请求可能非常频繁，所以最好在靠近CDN的某个位置维持一些Resource Database的只读副本。
 
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - Path -> last_modified, content_type, content_length, resource_representation
