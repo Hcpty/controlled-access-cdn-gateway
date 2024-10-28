@@ -32,7 +32,7 @@ Resource Database由Data Center建立和运行，Resource Database中存储的�
 CDN对Resource Database的请求可能非常频繁，所以最好在靠近CDN的某个位置维持一个Resource Database的只读副本。
 
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
-- Path -> last_modified, resource_representation
+- Path -> last_modified, content_type, content_length, resource_representation
 
 CDN在Cache Database中刷新一个缓存时应该使用一个Mutex Lock。
 
