@@ -19,19 +19,19 @@ A note about Controlled-Access CDN.
     - 如果Resource Database中的last_modified等于Cache Database中的last_modified，那么说明Cache Database中的缓存尚未过期，则CDN直接响应请求。
   - 如果上一步的查询结果是null，则CDN可以拒绝服务。
 
-Permission Database由Data Center建设和运营，Permission Database中存储的数据结构：
+Permission Database由Data Center建立和运行，Permission Database中存储的数据结构：
 - session_id -> user_groups
 - Path -> resource_groups
 - user_groups, Method, resource_groups -> remote|local|null
 
-CDN对Permission Database的请求可能非常频繁，所以应该在靠近CDN的某个位置维持一个Permission Database的只读副本。
+CDN对Permission Database的请求可能非常频繁，所以最好在靠近CDN的某个位置维持一个Permission Database的只读副本。
 
-Resource Database由Data Center建设和运营，Resource Database中存储的数据结构：
+Resource Database由Data Center建立和运行，Resource Database中存储的数据结构：
 - Path -> last_modified
 
-CDN对Resource Database的请求可能非常频繁，所以应该在靠近CDN的某个位置维持一个Resource Database的只读副本。
+CDN对Resource Database的请求可能非常频繁，所以最好在靠近CDN的某个位置维持一个Resource Database的只读副本。
 
-Cache Database由CDN建设和运营，Cache Database中存储的数据结构：
+Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - Path -> last_modified, resource_representation
 
 CDN在Cache Database中刷新一个缓存时应该使用一个Mutex Lock。
