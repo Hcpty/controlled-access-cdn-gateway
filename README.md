@@ -23,6 +23,8 @@ CDN处理任务的过程：
     - 如果Permission Condition Database中的last_modified等于Cache Database中的last_modified，那么说明Cache Database中的缓存尚未过期，则CDN直接使用缓存响应请求。
   - 如果choice的值是null，则CDN可以提示无法提供服务。
 
+未进行登录的用户可以属于nobody用户组。
+
 注意CDN内部要对 query fields 进行排序存储和匹配，以防止重复缓存。
 
 Permission Condition Database由Data Center建立和运行，Permission Condition Database中存储的数据结构：
