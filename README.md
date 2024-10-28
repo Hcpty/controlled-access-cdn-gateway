@@ -25,7 +25,7 @@ CDN处理任务的过程：
 
 未进行登录的用户可以属于nobody用户组。
 
-注意CDN应该在内部对 query fields 先进行排序再进行存储和匹配。
+注意CDN应该在内部对 query fields 先进行排序再进行存储和匹配，以避免重复。
 
 Permission Mark Database由Data Center建立和运行，Permission Mark Database中存储的数据结构：
 - session_id -> user_groups
