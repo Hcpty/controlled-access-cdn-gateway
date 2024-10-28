@@ -34,7 +34,7 @@ Permission Condition Database由Data Center建立和运行，Permission Conditio
 
 注意CDN对Permission Condition Database的请求可能非常频繁，所以最好在靠近CDN的位置上放置一些Permission Condition Database的只读副本，而且保证从副本到原本有一个较低的网络延迟。
 
-这个Permission Condition Database最好是一种把工作集放在内存中的Key-Value Database。
+这个Permission Condition Database最好是一种把工作集完全放置在主存中的Key-Value Database。
 
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - Path -> resource_mark, resource_metadata, resource_representation
