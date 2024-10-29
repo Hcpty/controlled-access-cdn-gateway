@@ -52,3 +52,4 @@ CDN还需要建立和运行一个Lock Database，因为CDN在Cache Database中�
 - [Remote Mutex Lock and Remote Readers-Writer Lock - Hcpty](https://github.com/hcpty/remote-mutex-lock-and-remote-readers-writer-lock)
 - [If-Modified-Since/Last-Modified - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since)
 - [If-None-Match/ETag - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match)
+- [Available, Big and Fast - Hcpty](https://github.com/hcpty/available-big-and-fast)
