@@ -39,7 +39,7 @@ Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 
 注意要保证从CDN到Data Center有较大的网络带宽和较低的网络延迟。
 
-注意CDN根据resource_mark进行Conditional GET，resource_mark可以是"If-Modified-Since: \<Last-Modified\>"的形式，也可以是"If-None-Match: \<ETag\>"的形式，如果两个都存在，则仅使用后者。
+注意CDN根据resource_mark进行Conditional GET，resource_mark可以是"If-Modified-Since: \<Last-Modified\>"的形式，也可以是"If-None-Match: \<ETag\>"的形式，如果两者都存在，则仅使用后者。
 
 ### Credits
 - Computer Systems: A Programmer's Perspective, Third Edition
