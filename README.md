@@ -37,7 +37,7 @@ Permission Mark Database由Data Center建立和运行，Permission Mark Database
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - Path -> resource_mark, resource_metadata, resource_representation
 
-为了刷新缓存，CDN可以通过一个Message Queue异步请求一个Refresher进行刷新，并传入resource_id作为要刷新的目标，由Refresher负责刷新。
+为了刷新缓存，CDN可以通过一个Message Queue异步请求一个Refresher进行刷新，并传入Path作为要刷新的目标，由Refresher负责刷新。
 
 注意要保证从CDN到Data Center有较大的网络带宽和较低的网络延迟。
 
