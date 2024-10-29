@@ -14,7 +14,7 @@ CDN处理任务的过程：
   - CDN从HTTP Request中读取 (URL) Path (without query)。
 - CDN从Permission Mark Database中查询session_id, Method, Path -> choice的映射，这一步可以细分为三步：
   - CDN从Permission Mark Database中查询session_id -> user_groups的映射。
-  - CDN从Permission Mark Database中查询Path -> resource_groups, resource_mark_type, resource_mark的映射。
+  - CDN从Permission Mark Database中查询Path -> resource_groups, resource_mark的映射。
   - CDN从Permission Mark Database中查询user_groups, Method, resource_groups -> choice的映射。
 - 如果choice的值是remote或local，则说明可以提供服务，否则说明不可以提供服务，CDN可以作出三种不同的反应：
   - 如果choice的值是remote，则CDN扮演反向代理将请求转发给Data Center，并直接用Data Center的响应响应请求。
@@ -27,19 +27,19 @@ CDN处理任务的过程：
 
 Permission Mark Database由Data Center建立和运行，Permission Mark Database中存储的数据结构：
 - session_id -> user_groups
-- Path -> resource_groups, resource_mark_type, resource_mark
+- Path -> resource_groups, resource_mark
 - user_groups, Method, resource_groups -> choice
 
 注意CDN对Permission Mark Database的请求可能非常频繁，所以最好在CDN上放置一些Permission Mark Database的只读副本，而且保证从副本到原本有一个较低的网络延迟。
 
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
-- Path -> resource_mark_type, resource_mark, resource_metadata, resource_representation
+- Path -> resource_mark, resource_metadata, resource_representation
 
 为了刷新缓存，CDN可以通过一个Message Queue异步请求一个Refresher进行刷新，并传入Path作为要刷新的目标，由Refresher负责刷新。
 
 注意要保证从CDN到Data Center有较大的网络带宽和较低的网络延迟。
 
-注意CDN根据resource_mark进行Conditional GET，resource_mark_type既可以是Last-Modified，也可以是ETag。
+注意CDN根据resource_mark进行Conditional GET，resource_mark_type既可以是"Last-Modified: \<Last-Modified\>"的形式，也可以是"ETag: \<ETag\>"的形式。
 
 ### Credits
 - Computer Systems: A Programmer's Perspective, Third Edition
