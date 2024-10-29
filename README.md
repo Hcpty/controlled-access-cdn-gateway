@@ -11,7 +11,7 @@ CDN处理任务的过程：
 - CDN读取请求，这一步可以细分为三步：
   - CDN从HTTP Request中读取Cookie，然后从Cookie中读取session_id。
   - CDN从HTTP Request中读取 (Request) Method。
-  - CDN从HTTP Request中读取 (URL) Path (with query)。
+  - CDN从HTTP Request中读取 (URL) Path (without query)。
 - CDN从Permission Mark Database中查询session_id, Method, Path -> choice的映射，这一步可以细分为三步：
   - CDN从Permission Mark Database中查询session_id -> user_groups的映射。
   - CDN从Permission Mark Database中查询Path -> resource_groups, resource_mark的映射。
