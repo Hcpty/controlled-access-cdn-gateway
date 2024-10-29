@@ -41,7 +41,7 @@ Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 
 注意要保证从CDN到Data Center有较大的网络带宽和较低的网络延迟。
 
-注意CDN通过resource_mark进行Markal GET，一般情况下resource_mark是Last-Modified，也可以是ETag，但最好是Last-Modified，因为ETag不经济。
+注意CDN通过resource_mark进行Conditional GET，一般情况下resource_mark是Last-Modified，也可以是ETag，但最好是Last-Modified，因为ETag不经济。
 
 ### Credits
 - Computer Systems: A Programmer's Perspective, Third Edition
