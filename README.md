@@ -32,7 +32,7 @@ Permission Mark Database由Data Center建立和运行，Permission Mark Database
 - Path -> resource_groups, resource_mark
 - user_groups, Method, resource_groups -> choice
 
-注意CDN对Permission Mark Database的请求可能非常频繁，所以最好在CDN附近放置一些Permission Mark Database的只读副本，而且保证从副本到原本有一个较低的网络延迟。
+注意CDN对Permission Mark Database的请求可能非常频繁，所以最好在CDN上放置一些Permission Mark Database的只读副本，而且保证从副本到原本有一个较低的网络延迟。
 
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 - Path -> resource_mark, resource_metadata, resource_representation
