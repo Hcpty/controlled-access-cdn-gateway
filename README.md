@@ -3,7 +3,7 @@ A note about Controlled-Access CDN (Content Delivery Network) Gateway.
 
 ### 带访问控制的CDN网关
 
-CDN网关处理请求的过程如下：
+CDN网关处理请求的过程：
 - CDN网关读取请求，这一步可以细分为三步：
   - CDN网关从HTTP Request中读取Cookie，然后从Cookie中读取Session ID。
   - CDN网关从HTTP Request中读取 (Request) Method。
