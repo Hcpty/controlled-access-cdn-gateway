@@ -13,7 +13,7 @@ CDN网关处理任务的过程：
   - CDN网关从Permission Mark Database中查询Path -> Resource Groups, Resource Mark的映射。
   - CDN网关从Permission Mark Database中查询User Groups, Method, Resource Groups -> Choice的映射。
 - 如果Choice的值是remote或local，则说明可以提供服务，否则说明不可以提供服务，CDN网关可以作出三种不同的反应：
-  - 如果Choice的值是remote，则CDN网关扮演反向代理将请求转发给Data Center，并直接用Data Center的响应响应请求。
+  - 如果Choice的值是remote，则CDN网关扮演反向代理将请求转发给Data Center，并直接用Data Center的响应响应请求，并且不对响应进行缓存。
   - 如果Choice的值是local，则CDN网关根据Path到Cache Database中查询Resource Mark，并比较Resource Mark的值：
     - 如果Permission Mark Database中的Resource Mark和Cache Database中的Resource Mark不同，那么说明Cache Database中的缓存已经过期，则CDN网关先刷新缓存，再响应请求。
     - 如果Permission Mark Database中的Resource Mark和Cache Database中的Resource Mark相同，那么说明Cache Database中的缓存尚未过期，则CDN网关直接使用缓存响应请求。
