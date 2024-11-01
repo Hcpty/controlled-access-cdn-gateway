@@ -3,7 +3,7 @@ A note about Controlled-Access CDN (Content Delivery Network) Gateway.
 
 ### 带访问控制的CDN网关
 
-CDN网关处理任务的过程：
+CDN网关处理请求的过程如下：
 - CDN网关读取请求，这一步可以细分为三步：
   - CDN网关从HTTP Request中读取Cookie，然后从Cookie中读取Session ID。
   - CDN网关从HTTP Request中读取 (Request) Method。
@@ -19,9 +19,7 @@ CDN网关处理任务的过程：
     - 如果Permission Mark Database中的Resource Mark和Cache Database中的Resource Mark相同，那么说明Cache Database中的缓存尚未过期，则CDN网关直接使用缓存响应请求。
   - 如果Choice的值是null，则CDN网关可以提示无法提供服务。
 
-未进行登录的用户可以属于nobody用户组。
-
-Permission Mark Database由Data Center建立和运行，Permission Mark Database中存储的数据结构：
+Permission Mark Database：
 
 ```
 Session ID -> User Groups
@@ -35,19 +33,16 @@ Path -> Resource Groups, Resource Mark
 User Groups, Method, Resource Groups -> Choice
 ```
 
-注意CDN网关对Permission Mark Database的请求可能非常频繁，所以最好在CDN网关上放置一些Permission Mark Database的只读副本，而且保证从副本到原本有一个较低的网络延迟。
-
-Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
-
+Cache Database：
 ```
 Path -> Resource Mark, Resource Metadata, Resource Representation
 ```
 
-为了刷新缓存，CDN网关可以通过一个Message Queue异步请求一个Cache Refresher进行刷新，并传入Path作为要刷新的目标，由Cache Refresher负责刷新。
-
-注意要保证从CDN网关到Data Center有较大的网络带宽和较低的网络延迟。
-
-CDN网关根据Resource Mark进行Conditional GET，Resource Mark既可以是"If-Modified-Since: \<Last-Modified\>"的形式，也可以是"If-None-Match: \<ETag\>"的形式，还可以是两者同时存在的形式。
+注意事项：
+- 未进行登录的用户可以属于nobody用户组。
+- CDN网关对Permission Mark Database的请求可能非常频繁，所以要在CDN网关附近放置一些Permission Mark Database的只读副本。
+- 为了刷新缓存，CDN网关可以通过一个Message Queue异步请求一个Cache Refresher进行刷新，并传入Path作为要刷新的目标，由Cache Refresher负责刷新。
+- CDN网关根据Resource Mark进行Conditional GET，Resource Mark既可以是"If-Modified-Since: \<Last-Modified\>"的形式，也可以是"If-None-Match: \<ETag\>"的形式，还可以是两者同时存在的形式。
 
 ### Credits
 - [Representational State Transfer Architectural Style - Fielding Dissertation](https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
