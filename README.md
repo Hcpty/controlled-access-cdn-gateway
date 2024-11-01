@@ -8,7 +8,7 @@ CDN网关处理任务的过程：
   - CDN网关从HTTP Request中读取Cookie，然后从Cookie中读取Session ID。
   - CDN网关从HTTP Request中读取 (Request) Method。
   - CDN网关从HTTP Request中读取 (URL) Path (without query)。
-- CDN网关从Permission Mark Database中查询Session ID, Method, Path -> Choice的映射，这一步可以细分为三步：
+- CDN网关从Permission Mark Database中查询Session ID, Method, Path -> Choice的映射，这一步也可以细分为三步：
   - CDN网关从Permission Mark Database中查询Session ID -> User Groups的映射。
   - CDN网关从Permission Mark Database中查询Path -> Resource Groups, Resource Mark的映射。
   - CDN网关从Permission Mark Database中查询User Groups, Method, Resource Groups -> Choice的映射。
