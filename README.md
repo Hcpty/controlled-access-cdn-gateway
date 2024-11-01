@@ -3,10 +3,6 @@ A note about Controlled-Access CDN (Content Delivery Network) Gateway.
 
 ### 带访问控制的CDN网关
 
-CDN网关的主要用途包括：
-- 对来自Client的HTTP Request进行访问控制、反向代理和缓存服务。
-- 对来自Data Center的HTTP Response进行缓存。
-
 CDN网关处理任务的过程：
 - CDN网关读取请求，这一步可以细分为三步：
   - CDN网关从HTTP Request中读取Cookie，然后从Cookie中读取Session ID。
