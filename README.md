@@ -1,7 +1,7 @@
 # Controlled-Access CDN Gateway
 A note about Controlled-Access CDN (Content Delivery Network) Gateway.
 
-### 带访问控制的CDN Gateway
+### 控制访问的CDN Gateway
 
 CDN Gateway处理请求的过程：
 - CDN Gateway读取请求，这一步可以细分为三步：
