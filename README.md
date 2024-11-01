@@ -47,7 +47,7 @@ Path -> Resource Mark, Resource Metadata, Resource Representation
 
 注意要保证从CDN网关到Data Center有较大的网络带宽和较低的网络延迟。
 
-CDN网关根据Resource Mark进行Conditional GET，Resource Mark可以是"If-Modified-Since: \<Last-Modified\>"的形式，也可以是"If-None-Match: \<ETag\>"的形式，如果两者都存在，则仅使用后者。
+CDN网关根据Resource Mark进行Conditional GET，Resource Mark既可以是"If-Modified-Since: \<Last-Modified\>"的形式，也可以是"If-None-Match: \<ETag\>"的形式，还可以是两者都存在的形式。
 
 ### Credits
 - [Representational State Transfer Architectural Style - Fielding Dissertation](https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
