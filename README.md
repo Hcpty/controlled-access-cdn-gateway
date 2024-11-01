@@ -26,14 +26,20 @@ CDN网关处理任务的过程：
 未进行登录的用户可以属于nobody用户组。
 
 Permission Mark Database由Data Center建立和运行，Permission Mark Database中存储的数据结构：
+
+```sql
 - session_id -> user_groups
 - Path -> resource_groups, resource_mark
 - user_groups, Method, resource_groups -> choice
+```
 
 注意CDN网关对Permission Mark Database的请求可能非常频繁，所以最好在CDN网关上放置一些Permission Mark Database的只读副本，而且保证从副本到原本有一个较低的网络延迟。
 
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
+
+```sql
 - Path -> resource_mark, resource_metadata, resource_representation
+```
 
 为了刷新缓存，CDN网关可以通过一个Message Queue异步请求一个Cache Refresher进行刷新，并传入Path作为要刷新的目标，由Cache Refresher负责刷新。
 
