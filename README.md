@@ -42,7 +42,6 @@ Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 CDN网关根据resource_mark进行Conditional GET，resource_mark可以是"If-Modified-Since: \<Last-Modified\>"的形式，也可以是"If-None-Match: \<ETag\>"的形式，如果两者都存在，则仅使用后者。
 
 ### Credits
-- Computer Networking: A Top-Down Approach, Eighth Edition
 - [Representational State Transfer Architectural Style - Fielding Dissertation](https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
 - [If-Modified-Since/Last-Modified - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since) and [If-None-Match/ETag - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match)
 - [Understanding /etc/passwd File Format - nixCraft](https://www.cyberciti.biz/faq/understanding-etcpasswd-file-format)
