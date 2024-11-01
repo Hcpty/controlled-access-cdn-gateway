@@ -13,7 +13,7 @@ CDN Gateway处理请求的过程：
   - CDN Gateway从Permission Mark Database中查询Path -> Resource Groups, Resource Mark的映射。
   - CDN Gateway从Permission Mark Database中查询User Groups, Method, Resource Groups -> Choice的映射。
 - 如果Choice的值是remote或local，则说明可以提供服务，否则说明不可以提供服务，CDN Gateway可以作出三种不同的反应：
-  - 如果Choice的值是remote，则CDN Gateway扮演反向代理将请求转发给Data Center，并直接用Data Center的响应响应请求，并且不对响应进行缓存。
+  - 如果Choice的值是remote，则CDN Gateway扮演反向代理让Data Center直接提供服务，并且不对响应进行缓存。
   - 如果Choice的值是local，则CDN Gateway根据Path到Cache Database中查询Resource Mark，并比较Resource Mark的值：
     - 如果Permission Mark Database中的Resource Mark和Cache Database中的Resource Mark不同，那么说明Cache Database中的缓存已经过期，则CDN Gateway先刷新缓存，再响应请求。
     - 如果Permission Mark Database中的Resource Mark和Cache Database中的Resource Mark相同，那么说明Cache Database中的缓存尚未过期，则CDN Gateway直接使用缓存响应请求。
