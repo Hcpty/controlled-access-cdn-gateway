@@ -27,15 +27,15 @@ CDN网关处理任务的过程：
 
 Permission Mark Database由Data Center建立和运行，Permission Mark Database中存储的数据结构：
 
-```sql
+```
 session_id -> user_groups
 ```
 
-```sql
+```
 Path -> resource_groups, resource_mark
 ```
 
-```sql
+```
 user_groups, Method, resource_groups -> choice
 ```
 
@@ -43,7 +43,7 @@ user_groups, Method, resource_groups -> choice
 
 Cache Database由CDN建立和运行，Cache Database中存储的数据结构：
 
-```sql
+```
 Path -> resource_mark, resource_metadata, resource_representation
 ```
 
