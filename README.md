@@ -35,8 +35,8 @@ Message Queue和Cache Refresher：
 为了刷新缓存，CDN Gateway可以通过一个Message Queue异步请求一个Cache Refresher进行刷新，并传入Path作为要刷新的目标，由Cache Refresher负责刷新。
 
 其他注意事项：
-- CDN Gateway对Permission Mark Database的请求可能非常频繁，所以要在CDN Gateway附近放置一些Permission Mark Database的只读副本。
 - 未进行登录的用户属于nobody用户组。
+- CDN Gateway对Permission Mark Database的请求可能非常频繁，所以要在CDN Gateway附近放置一些Permission Mark Database的只读副本。
 - CDN Gateway根据Resource Mark进行Conditional GET，Resource Mark既可以是"If-Modified-Since: \<Last-Modified\>"的形式，也可以是"If-None-Match: \<ETag\>"的形式，还可以是两者同时存在的形式。
 
 ### Credits
