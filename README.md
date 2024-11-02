@@ -32,7 +32,7 @@ Path -> Resource Mark, Resource Metadata, Resource Representation
 
 Message Queue和Cache Refresher：
 
-为了刷新缓存，CDN Gateway可以通过一个Message Queue异步请求一个Cache Refresher进行刷新，并传入Path作为要刷新的目标，由Cache Refresher负责刷新。
+为了刷新缓存，CDN Gateway可以通过一个Message Queue异步请求一个Cache Refresher进行刷新，并传入Path作为要刷新的目标。
 
 其他注意事项：
 - 未进行登录的用户属于nobody用户组。
