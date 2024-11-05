@@ -29,10 +29,6 @@ Cache Database：
 Path -> Resource Mark, Resource Metadata, Resource Representation
 ```
 
-Message Queue和Cache Refresher：
-
-为了刷新缓存，CDN Gateway可以通过一个Message Queue异步请求一个Cache Refresher进行刷新，并传入Path作为要刷新的目标。
-
 其他注意事项：
 - 未注册用户默认属于nobody用户组，已注册用户默认属于somebody用户组。无效链接对应的资源默认属于nothing资源组，有效链接对应的资源默认属于something资源组。
 - CDN Gateway对Permission Mark Database的请求可能非常频繁，所以要在CDN Gateway附近放置一些Permission Mark Database的只读副本。
