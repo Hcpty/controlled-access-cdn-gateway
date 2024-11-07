@@ -32,7 +32,7 @@ Path -> Resource Freshness, Resource Metadata, Resource Representation
 其他注意事项：
 - 未注册用户默认属于nobody用户组，已注册用户默认属于somebody用户组。无效链接对应的资源默认属于nothing资源组，有效链接对应的资源默认属于something资源组。
 - CDN Gateway对Choice Database的请求可能非常频繁，所以要在CDN Gateway附近放置一些Choice Database的只读副本。
-- CDN Gateway根据Resource Freshness进行Conditional GET，Resource Freshness既可以是"If-Modified-Since: \<Last-Modified\>"的形式，也可以是"If-None-Match: \<ETag\>"的形式，还可以是两者同时存在的形式。
+- Resource Freshness可以是"If-Modified-Since: \<Last-Modified\>"、"If-None-Match: \<ETag\>"等。
 
 ### Credits
 - [Understanding /etc/passwd File Format - nixCraft](https://www.cyberciti.biz/faq/understanding-etcpasswd-file-format)
