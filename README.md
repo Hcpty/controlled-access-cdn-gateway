@@ -26,7 +26,7 @@ User Groups, Method, Resource Groups -> Choice
 
 Cache Database：
 ```
-Path -> Resource Freshness, Resource Metadata, Resource Representation
+Path -> Resource Freshness, Resource Metadata
 ```
 
 其他注意事项：
